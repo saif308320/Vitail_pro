@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vitalis — Adaptive Human Performance Coaching</title>
+<meta name="description" content="Vitalis reads your biometric signals every morning and rebuilds your training, recovery, and nutrition protocol before you've had coffee. No guesswork. No generic plans.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><path d=%22M16 2 28 9 28 23 16 30 4 23 4 9Z%22 fill=%22%2305070a%22 stroke=%22%2300f0d6%22 stroke-width=%221.6%22/><path d=%22M7 16h5l2.5-6 3.5 12 2.5-6h5%22 stroke=%22%23e8b75c%22 stroke-width=%221.8%22 fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<div id="loader">
+  <div class="loader-ring"></div>
+  <div class="loader-text">Calibrating Vitality Core</div>
+</div>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<canvas id="bg-particles"></canvas>
+<div class="grid-overlay"></div>
+
+<nav id="nav">
+  <div class="wrap">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 2 28 9 28 23 16 30 4 23 4 9Z" stroke="#00f0d6" stroke-width="1.6"/>
+          <path d="M7 16h5l2.5-6 3.5 12 2.5-6h5" stroke="#e8b75c" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="logo-word">VITALIS<small>Performance Lab</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a href="contact.html" class="nav-cta" data-cursor-hover>Start Assessment</a>
+      <button class="nav-burger" id="nav-burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="nav-cta" data-cursor-hover>Start Assessment</a>
+</div>
+
+<section class="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="wrap">
+    <div class="hero-copy">
+      <div class="eyebrow reveal">Human Performance Lab · Est. 2023</div>
+      <h1 class="hero-headline reveal">Your body, <span class="grad">decoded</span> and directed daily.</h1>
+      <p class="hero-sub reveal">Vitalis reads your biometric signals every morning and rebuilds your training, recovery, and nutrition protocol before you've had coffee. No guesswork. No generic plans.</p>
+      <div class="hero-actions reveal">
+        <a href="contact.html" class="btn btn-primary" data-cursor-hover>Start Your Assessment <span class="btn-arrow">→</span></a>
+        <a href="#solution" class="btn btn-ghost" data-cursor-hover>See How It Works</a>
+      </div>
+      <div class="hero-stats reveal">
+        <div class="hero-stat"><b>6,400+</b><span>Members Coached</span></div>
+        <div class="hero-stat"><b>91%</b><span>3-Month Retention</span></div>
+        <div class="hero-stat"><b>4.8<span style="color:var(--slate-dim);font-size:16px;">/5</span></b><span>Member Rating</span></div>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="orb-mount"></div>
+      <div class="readiness-card glass">
+        <div class="rc-top"><span class="rc-label">Readiness Score</span><span class="rc-dot"></span></div>
+        <div class="rc-value">87<span style="font-size:16px;color:var(--slate);">/100</span></div>
+        <div class="rc-bar"><div class="rc-bar-fill"></div></div>
+      </div>
+      <div class="floating-badge glass"><span>⚡ HRV +14% this week</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<section id="problem">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">The Problem</div>
+      <h2>Generic plans fail because bodies aren't generic.</h2>
+      <p>Most fitness apps give everyone the same program and hope for the best. Your recovery, stress, and sleep change daily — your plan should too.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card glass reveal">
+        <div class="problem-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2v6M12 16v6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M2 12h6M16 12h6M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2" stroke="#ff6b6b" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        <h3>Static templates</h3>
+        <p>A PDF workout plan doesn't know you slept 4 hours and your CNS is fried. It just tells you to hit a new PR anyway.</p>
+      </div>
+      <div class="problem-card glass reveal">
+        <div class="problem-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l3 8 4-16 3 8h4" stroke="#ff6b6b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Data with no direction</h3>
+        <p>Your wearable collects thousands of data points. Almost none of them turn into a decision you can act on today.</p>
+      </div>
+      <div class="problem-card glass reveal">
+        <div class="problem-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#ff6b6b" stroke-width="1.6"/><path d="M12 7v5l3.5 2" stroke="#ff6b6b" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        <h3>Burnout by month two</h3>
+        <p>Without real recovery tracking, motivation carries you for six weeks — then injury, fatigue, or boredom ends the streak.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="solution">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">The Method</div>
+      <h2>One adaptive protocol, rebuilt around you every morning.</h2>
+    </div>
+    <div class="solution">
+      <div class="solution-media reveal">
+        <img src="https://images.stockcake.com/public/6/6/c/66cfb074-29d7-4b31-9fea-19f15a9d480f_large/future-fitness-warrior-stockcake.jpg" alt="Athlete training with real-time biometric tracking">
+        <div class="media-stat glass ms-1">
+          <div class="rc-value">142<span style="font-size:13px;color:var(--slate);"> bpm</span></div>
+          <div class="rc-label">Live Heart Rate</div>
+        </div>
+        <div class="media-stat glass ms-2">
+          <div class="rc-value">Zone 4</div>
+          <div class="rc-label">Current Training Load</div>
+        </div>
+      </div>
+      <div class="solution-steps">
+        <div class="protocol-step reveal">
+          <div class="protocol-num">01</div>
+          <div><h4>Morning biometric scan</h4><p>HRV, sleep depth, and resting heart rate sync automatically from your wearable before 7am.</p></div>
+        </div>
+        <div class="protocol-step reveal">
+          <div class="protocol-num">02</div>
+          <div><h4>Protocol rebuilds itself</h4><p>Training volume, intensity, and nutrition targets adjust in real time — no manual logging required.</p></div>
+        </div>
+        <div class="protocol-step reveal">
+          <div class="protocol-num">03</div>
+          <div><h4>Session delivered to you</h4><p>Open the app and your exact session for today is already waiting, with load and rest periods calculated.</p></div>
+        </div>
+        <div class="protocol-step reveal">
+          <div class="protocol-num">04</div>
+          <div><h4>Weekly recalibration</h4><p>A human coach reviews your trend lines every week and fine-tunes the model with you.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="benefits">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Why Vitalis</div>
+      <h2>Built for people who take recovery as seriously as effort.</h2>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card glass reveal">
+        <div class="benefit-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="#00f0d6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Real-time adaptation</h3>
+        <p>Every session adjusts to yesterday's recovery, not last month's template.</p>
+      </div>
+      <div class="benefit-card glass reveal">
+        <div class="benefit-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.2H22l-6 4.6 2.3 7.2-6.3-4.6L5.7 21l2.3-7.2-6-4.6h7.6z" stroke="#e8b75c" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
+        <h3>Coach-reviewed weekly</h3>
+        <p>A certified performance coach checks in on your data every single week.</p>
+      </div>
+      <div class="benefit-card glass reveal">
+        <div class="benefit-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21C7 17 3 13.5 3 9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 4.5-4 8-9 12z" stroke="#00f0d6" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+        <h3>Injury-aware programming</h3>
+        <p>Flags overreaching before it becomes a setback, not after.</p>
+      </div>
+      <div class="benefit-card glass reveal">
+        <div class="benefit-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="4" height="9" rx="1" stroke="#e8b75c" stroke-width="1.5"/><rect x="10" y="6" width="4" height="14" rx="1" stroke="#e8b75c" stroke-width="1.5"/><rect x="17" y="3" width="4" height="17" rx="1" stroke="#e8b75c" stroke-width="1.5"/></svg></div>
+        <h3>Progress you can see</h3>
+        <p>Trend lines on strength, recovery, and consistency — updated daily.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials" style="padding-left:0;padding-right:0;">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Member Results</div>
+      <h2>Trusted by people who don't have time to waste in the gym.</h2>
+    </div>
+  </div>
+  <div class="testimonials-track-wrap">
+    <div class="testimonials-track" id="t-track">
+      <div class="t-card glass">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"I stopped guessing. Vitalis flagged the week before my knee would've flared up and had me deload. That alone paid for a year."</p>
+        <div class="t-person">
+          <img class="t-avatar" src="https://images.stockcake.com/public/d/7/e/d7e6ae1a-e53f-4f28-8c16-f2b76e834068_medium/fit-confident-smiling-stockcake.jpg" alt="Amara O. portrait">
+          <div><b>Amara O.</b><span>Member since 2023</span></div>
+        </div>
+      </div>
+      <div class="t-card glass">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"The morning scan-to-workout flow is the whole product. I open the app and it already knows what today should look like."</p>
+        <div class="t-person">
+          <img class="t-avatar" src="https://images.stockcake.com/public/2/1/0/2101d1bd-ce39-4e53-9272-51208474dc3e_medium/neon-gym-warrior-stockcake.jpg" alt="Daniyal R. portrait">
+          <div><b>Daniyal R.</b><span>Member since 2024</span></div>
+        </div>
+      </div>
+      <div class="t-card glass">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"My coach caught overtraining from my HRV trend before I even felt tired. That's the difference from every app I'd tried before."</p>
+        <div class="t-person">
+          <img class="t-avatar" src="https://images.stockcake.com/public/d/7/e/d7e6ae1a-e53f-4f28-8c16-f2b76e834068_medium/fit-confident-smiling-stockcake.jpg" alt="Sana K. portrait">
+          <div><b>Sana K.</b><span>Member since 2023</span></div>
+        </div>
+      </div>
+      <div class="t-card glass">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"91% retention sounded like a marketing number until I hit month four still going. The plan moves with my life, not against it."</p>
+        <div class="t-person">
+          <img class="t-avatar" src="https://images.stockcake.com/public/2/1/0/2101d1bd-ce39-4e53-9272-51208474dc3e_medium/neon-gym-warrior-stockcake.jpg" alt="Malik T. portrait">
+          <div><b>Malik T.</b><span>Member since 2023</span></div>
+        </div>
+      </div>
+      <!-- duplicate set for seamless marquee loop -->
+      <div class="t-card glass">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"I stopped guessing. Vitalis flagged the week before my knee would've flared up and had me deload. That alone paid for a year."</p>
+        <div class="t-person">
+          <img class="t-avatar" src="https://images.stockcake.com/public/d/7/e/d7e6ae1a-e53f-4f28-8c16-f2b76e834068_medium/fit-confident-smiling-stockcake.jpg" alt="Amara O. portrait">
+          <div><b>Amara O.</b><span>Member since 2023</span></div>
+        </div>
+      </div>
+      <div class="t-card glass">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"The morning scan-to-workout flow is the whole product. I open the app and it already knows what today should look like."</p>
+        <div class="t-person">
+          <img class="t-avatar" src="https://images.stockcake.com/public/2/1/0/2101d1bd-ce39-4e53-9272-51208474dc3e_medium/neon-gym-warrior-stockcake.jpg" alt="Daniyal R. portrait">
+          <div><b>Daniyal R.</b><span>Member since 2024</span></div>
+        </div>
+      </div>
+      <div class="t-card glass">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"My coach caught overtraining from my HRV trend before I even felt tired. That's the difference from every app I'd tried before."</p>
+        <div class="t-person">
+          <img class="t-avatar" src="https://images.stockcake.com/public/d/7/e/d7e6ae1a-e53f-4f28-8c16-f2b76e834068_medium/fit-confident-smiling-stockcake.jpg" alt="Sana K. portrait">
+          <div><b>Sana K.</b><span>Member since 2023</span></div>
+        </div>
+      </div>
+      <div class="t-card glass">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"91% retention sounded like a marketing number until I hit month four still going. The plan moves with my life, not against it."</p>
+        <div class="t-person">
+          <img class="t-avatar" src="https://images.stockcake.com/public/2/1/0/2101d1bd-ce39-4e53-9272-51208474dc3e_medium/neon-gym-warrior-stockcake.jpg" alt="Malik T. portrait">
+          <div><b>Malik T.</b><span>Member since 2023</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing-teaser">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin-left:auto;margin-right:auto;text-align:center;">
+      <div class="eyebrow" style="justify-content:center;">Pricing</div>
+      <h2>Three ways to work with Vitalis.</h2>
+      <p style="margin-left:auto;margin-right:auto;">From self-directed adaptive programming to a dedicated 1:1 coach — see the full breakdown and compare plans.</p>
+    </div>
+    <div style="text-align:center;">
+      <a href="pricing.html" class="btn btn-primary" data-cursor-hover>View Full Pricing <span class="btn-arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="join">
+  <div class="wrap">
+    <div class="cta-final reveal">
+      <div class="cta-inner">
+        <div>
+          <div class="eyebrow">Start Today</div>
+          <h2>Get your first adaptive protocol, free.</h2>
+          <p>12-minute assessment. No credit card. See exactly what a week with Vitalis looks like before you commit to anything.</p>
+        </div>
+        <div>
+          <form class="lead-form" id="lead-form" data-validate data-success="form-success" novalidate>
+            <div class="field">
+              <input type="text" id="f-name" name="name" placeholder="Full name" autocomplete="name" required>
+              <div class="field-error">Please enter your name.</div>
+            </div>
+            <div class="field">
+              <input type="email" id="f-email" name="email" placeholder="Email address" autocomplete="email" required>
+              <div class="field-error">Please enter a valid email.</div>
+            </div>
+            <div class="field">
+              <input type="tel" id="f-phone" name="phone" placeholder="Phone (optional)" autocomplete="tel">
+            </div>
+            <button type="submit" class="btn btn-primary" data-cursor-hover>Get My Free Assessment <span class="btn-arrow">→</span></button>
+            <div class="form-note">Free 12-minute assessment · No credit card required</div>
+          </form>
+          <div class="form-success" id="form-success">
+            <div class="check"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00f0d6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3 style="margin-bottom:8px;">You're in.</h3>
+            <p style="color:var(--slate);font-size:14px;">Check your email — your assessment link is on its way.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <span class="logo-mark">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 2 28 9 28 23 16 30 4 23 4 9Z" stroke="#00f0d6" stroke-width="1.6"/>
+              <path d="M7 16h5l2.5-6 3.5 12 2.5-6h5" stroke="#e8b75c" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="logo-word">VITALIS<small>Performance Lab</small></span>
+        </a>
+        <p>Adaptive human performance coaching, rebuilt for you every single morning. Based in Karachi, coaching members worldwide.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Product</h5>
+          <a href="index.html#solution">Method</a>
+          <a href="index.html#benefits">Benefits</a>
+          <a href="pricing.html">Pricing</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About</a>
+          <a href="about.html#team">Coaches</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Legal</h5>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    <div class="divider" style="margin-bottom:24px;"></div>
+    <div class="footer-bottom">
+      <span>© 2026 Vitalis Performance Lab. All rights reserved.</span>
+      <span>Built for bodies that don't repeat themselves.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

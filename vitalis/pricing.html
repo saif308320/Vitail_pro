@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — Vitalis Performance Lab</title>
+<meta name="description" content="Three ways to work with Vitalis: Foundation, Performance, and Elite. Compare plans and find the right level of coaching intensity.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><path d=%22M16 2 28 9 28 23 16 30 4 23 4 9Z%22 fill=%22%2305070a%22 stroke=%22%2300f0d6%22 stroke-width=%221.6%22/><path d=%22M7 16h5l2.5-6 3.5 12 2.5-6h5%22 stroke=%22%23e8b75c%22 stroke-width=%221.8%22 fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<div id="loader"><div class="loader-ring"></div><div class="loader-text">Calibrating Vitality Core</div></div>
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<canvas id="bg-particles"></canvas>
+<div class="grid-overlay"></div>
+
+<nav id="nav">
+  <div class="wrap">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 2 28 9 28 23 16 30 4 23 4 9Z" stroke="#00f0d6" stroke-width="1.6"/><path d="M7 16h5l2.5-6 3.5 12 2.5-6h5" stroke="#e8b75c" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="logo-word">VITALIS<small>Performance Lab</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a href="contact.html" class="nav-cta" data-cursor-hover>Start Assessment</a>
+      <button class="nav-burger" id="nav-burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="nav-cta" data-cursor-hover>Start Assessment</a>
+</div>
+
+<header class="page-header">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Pricing</div>
+    <div class="eyebrow reveal">Pricing</div>
+    <h1 class="reveal">Pick your level of coaching intensity.</h1>
+    <p class="reveal">Every tier runs on the same adaptive core. What changes is how much human coaching sits on top of it. All plans are month-to-month.</p>
+  </div>
+</header>
+
+<section id="pricing" style="padding-top:0;">
+  <div class="wrap">
+    <div class="pricing-grid">
+      <div class="price-card glass reveal" data-tilt>
+        <div class="price-tier">Foundation</div>
+        <div class="price-amount">$29<span>/month</span></div>
+        <div class="price-desc">For self-directed training with adaptive programming.</div>
+        <ul class="price-features">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00f0d6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Daily adaptive protocol</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00f0d6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Wearable sync</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00f0d6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Readiness scoring</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00f0d6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Monthly progress report</li>
+        </ul>
+        <a href="contact.html" class="price-cta outline" data-cursor-hover>Choose Foundation</a>
+      </div>
+      <div class="price-card featured glass reveal" data-tilt>
+        <div class="price-badge">Most Popular</div>
+        <div class="price-tier">Performance</div>
+        <div class="price-amount">$79<span>/month</span></div>
+        <div class="price-desc">Full coaching layer with weekly human review.</div>
+        <ul class="price-features">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00f0d6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Everything in Foundation</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00f0d6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Weekly coach review</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00f0d6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Nutrition calibration</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00f0d6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Injury-risk alerts</li>
+        </ul>
+        <a href="contact.html" class="price-cta solid" data-cursor-hover>Choose Performance</a>
+      </div>
+      <div class="price-card glass reveal" data-tilt>
+        <div class="price-tier">Elite</div>
+        <div class="price-amount">$199<span>/month</span></div>
+        <div class="price-desc">1:1 coach, priority support, quarterly lab testing.</div>
+        <ul class="price-features">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00f0d6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Everything in Performance</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00f0d6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Dedicated 1:1 coach</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00f0d6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Quarterly lab panel</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#00f0d6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>24/7 priority support</li>
+        </ul>
+        <a href="contact.html" class="price-cta outline" data-cursor-hover>Choose Elite</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="compare">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Compare</div>
+      <h2>Every feature, side by side.</h2>
+    </div>
+    <div class="glass reveal" style="padding:8px 24px;">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Feature</th><th>Foundation</th><th>Performance</th><th>Elite</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Daily adaptive protocol</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Wearable sync</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Readiness scoring</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Coach review cadence</td><td>Monthly</td><td>Weekly</td><td>Daily on-call</td></tr>
+          <tr><td>Nutrition calibration</td><td>—</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Injury-risk alerts</td><td>—</td><td>✓</td><td>✓</td></tr>
+          <tr><td>Dedicated 1:1 coach</td><td>—</td><td>—</td><td>✓</td></tr>
+          <tr><td>Quarterly lab panel</td><td>—</td><td>—</td><td>✓</td></tr>
+          <tr><td>Support</td><td>Email</td><td>Priority email</td><td>24/7 priority</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin-left:auto;margin-right:auto;text-align:center;">
+      <div class="eyebrow" style="justify-content:center;">FAQ</div>
+      <h2>Questions, answered.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-q">Can I switch plans later?<span class="faq-plus"></span></div>
+        <div class="faq-a"><p>Yes. Upgrade or downgrade anytime from your account settings — changes apply from your next billing cycle.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">Which wearables does Vitalis support?<span class="faq-plus"></span></div>
+        <div class="faq-a"><p>Vitalis syncs with all major wearables including Whoop, Oura, Apple Watch, and Garmin. HRV and sleep data update automatically each morning.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">Do I need gym access?<span class="faq-plus"></span></div>
+        <div class="faq-a"><p>No. During onboarding you tell us what equipment you have — full gym, home setup, or bodyweight only — and every protocol adapts to it.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">Can I cancel anytime?<span class="faq-plus"></span></div>
+        <div class="faq-a"><p>Yes, all plans are month-to-month with no lock-in contract. Cancel from your account settings in under a minute.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">What happens in the free assessment?<span class="faq-plus"></span></div>
+        <div class="faq-a"><p>A 12-minute intake covering training history, current recovery markers, and goals, used to generate your first week's protocol before you pay anything.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="join">
+  <div class="wrap">
+    <div class="cta-final reveal">
+      <div class="cta-inner">
+        <div>
+          <div class="eyebrow">Start Today</div>
+          <h2>Get your first adaptive protocol, free.</h2>
+          <p>12-minute assessment. No credit card. See exactly what a week with Vitalis looks like before you commit to anything.</p>
+        </div>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+          <a href="contact.html" class="btn btn-primary" data-cursor-hover>Start Your Assessment <span class="btn-arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <span class="logo-mark"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 2 28 9 28 23 16 30 4 23 4 9Z" stroke="#00f0d6" stroke-width="1.6"/><path d="M7 16h5l2.5-6 3.5 12 2.5-6h5" stroke="#e8b75c" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="logo-word">VITALIS<small>Performance Lab</small></span>
+        </a>
+        <p>Adaptive human performance coaching, rebuilt for you every single morning. Based in Karachi, coaching members worldwide.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Product</h5>
+          <a href="index.html#solution">Method</a>
+          <a href="index.html#benefits">Benefits</a>
+          <a href="pricing.html">Pricing</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About</a>
+          <a href="about.html#team">Coaches</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h5>Legal</h5>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    <div class="divider" style="margin-bottom:24px;"></div>
+    <div class="footer-bottom">
+      <span>© 2026 Vitalis Performance Lab. All rights reserved.</span>
+      <span>Built for bodies that don't repeat themselves.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
